@@ -3,11 +3,15 @@ kind: Service
 metadata:
   name: solar-system
   namespace: solar-system
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 spec:
   selector:
     app: solar-system
   ports:
   - port: 3000
     targetPort: 30000
-  type: NodePort
+  type: LoadBalancer
   

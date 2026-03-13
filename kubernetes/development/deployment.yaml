@@ -18,7 +18,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: solar-system
-        image: chinmayapradhan/orbit-engine:3e906e3be059342b1916f020c034344fb267ddca
+        image: chinmayapradhan/orbit-engine:5259052a69545eda02f7aa72933801740901e74d
         securityContext:
           runAsNonRoot: true
           runAsUser: 1000

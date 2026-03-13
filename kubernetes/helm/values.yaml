@@ -1,0 +1,48 @@
+replicaCount: 1
+
+image:
+  repository: chinmayapradhan/orbit-engine
+  tag: "5259052a69545eda02f7aa72933801740901e74d"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+namespace: solar-system
+
+serviceAccount:
+  name: default
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  readOnlyRootFilesystem: true
+
+service:
+  type: LoadBalancer
+  port: 3000
+  targetPort: 3000
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+
+mongo:
+  secretName: mongo-db-creds
+  # Base64-encoded values (used only if createSecret is true)
+  createSecret: true
+  username: c3VwZXJ1c2Vy           # superuser
+  password: U3VwZXJQYXNzd29yZA==   # SuperPassword
+  uri: bW9uZ29kYitzcnY6Ly9zdXBlcmNsdXN0ZXIuZDgzamoubW9uZ29kYi5uZXQvc3VwZXJEYXRh
+
+resources: {}
+#  limits:
+#    cpu: 500m
+#    memory: 128Mi
+#  requests:
+#    cpu: 250m
+#    memory: 64Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
